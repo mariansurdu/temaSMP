@@ -9,7 +9,7 @@
 
 msg1    db      10, 13, 10, 13, "Please select an item:",0Dh,0Ah,0Dh,0Ah,09h
 
-        db      "1- Create File",0Dh,0Ah,09h
+        db      "1- Draw Rectangle",0Dh,0Ah,09h
 
         db      "2- About",0Dh,0Ah,09h     
 
@@ -77,7 +77,7 @@ getnum:
 
     cmp     al, "1"
 
-    je      CreateFile
+    je      DrawRectangle
 
     cmp     al, "2"
 
@@ -113,33 +113,77 @@ Showabout:
 
      
 
-CreateFile:
+DrawRectangle:
 
 jmp new
 
-text_size = $ - offset text
+w equ 20 ; dimensiune dreptunghi
+h equ 6
+new: mov ah, 0
+ mov al, 13h ; trecere in mod grafic 320x200
+ int 10h 
+ 
+ ; afisare latura inferioare
+ mov cx, 200+w
+ mov dx, 75+h
+ mov al, 35
+u2: mov ah, 0ch
+ int 10h
+ dec cx
+ cmp cx, 100
+ ja u2      
+ 
+ 
+ ; latura din stanga
+ mov cx, 100
+ mov dx, 75+h
+ mov al, 30
+u3: mov ah, 0ch
+ int 10h
+ dec dx
+ cmp dx, 20
+ ja u3                     
+ 
+ 
+ 
+ ; latura din dreapta
+ mov cx, 200+w
+ mov dx, 75+h
+ mov al, 25  
+ u4: mov ah, 0ch
+ int 10h
+ dec dx
+ cmp dx, 20
+ ja u4    
+ 
+ 
+ 
+ 
+ 
+ 
+ ; afisare latura superioara
+ mov cx, 200+w ; coloana
+ mov dx, 60 ; rand
+ mov al, 40 ; culoare
+u1: mov ah, 0ch ; afisare pixel
+ int 10h
+ dec cx
+ cmp cx, 100
+ jae u1
+ 
+ 
+ 
+ 
 
-new:
+ 
+ 
+ 
+ 
+ ; asteptare apasare tasta
+ mov ah,00
+ int 16h  
+ jmp     ShowMenu
 
-mov ah, 3ch
-
-mov dx, offset file1
-
-int 21h
-
-mov handle, ax
-
-mov ah, 40h
-
-mov bx, handle
-
-mov dx, offset text
-
-mov cx, text_size
-
-int 21h
-
-int 21h          
 
 ret
 
