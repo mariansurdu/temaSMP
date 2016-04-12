@@ -125,7 +125,7 @@ new: mov ah, 0
  
  ; afisare latura inferioare
  mov cx, 200+w
- mov dx, 75+h
+ mov dx, 150+h
  mov al, 35
 u2: mov ah, 0ch
  int 10h
@@ -136,45 +136,40 @@ u2: mov ah, 0ch
  
  ; latura din stanga
  mov cx, 100
- mov dx, 75+h
+ mov dx, 150+h
  mov al, 30
 u3: mov ah, 0ch
  int 10h
  dec dx
- cmp dx, 20
+ cmp dx, 100
  ja u3                     
  
  
  
  ; latura din dreapta
  mov cx, 200+w
- mov dx, 75+h
+ mov dx, 150+h
  mov al, 25  
  u4: mov ah, 0ch
  int 10h
  dec dx
- cmp dx, 20
- ja u4    
+ cmp dx, 100
+ ja u4
  
  
  
  
  
  
- ; afisare latura superioara
+       ; afisare latura superioara
  mov cx, 200+w ; coloana
- mov dx, 60 ; rand
+ mov dx, 100 ; rand
  mov al, 40 ; culoare
 u1: mov ah, 0ch ; afisare pixel
  int 10h
  dec cx
  cmp cx, 100
  jae u1
- 
- 
- 
- 
-
  
  
  
