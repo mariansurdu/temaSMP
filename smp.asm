@@ -11,7 +11,7 @@ include 'emu8086.inc'
 
 msg1    db      10, 13, 10, 13, "Please select an item:",0Dh,0Ah,0Dh,0Ah,09h
 
-        db      "1- Installation ",0Dh,0Ah,09h
+        db      "1- Water Installation ",0Dh,0Ah,09h
 
         db      "2- About",0Dh,0Ah,09h     
 
@@ -25,7 +25,7 @@ msg1    db      10, 13, 10, 13, "Please select an item:",0Dh,0Ah,0Dh,0Ah,09h
 
          
 
-About   db      10, 13, 10, 13, "This program shows us some graphics in emu8086!! :)$"
+About   db      10, 13, 10, 13, "Acest program utilizeaza gradica in mediul emu8086.La primul punct este o instalatie de apa.Puctul 3 ne permite sa realizam desene utilizand mouse-ul.Sursa proiectului poate fi gasita la https://github.com/mariansurdu/temaSMP $"
 
     
 
@@ -195,7 +195,7 @@ int 33h
         int 21h
         mov ah, 0
         int 16h
-hlt
+
 msg db " press any key.... $"
     
  
